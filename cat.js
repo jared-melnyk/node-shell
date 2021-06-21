@@ -1,12 +1,9 @@
 const fs = require('fs');
 
 module.exports = function (fileName) {
-  const fileContents = fs.readFile(fileName, 'utf8', function (err, data) {
-    if (err) {
-      console.log(err);
-      return;
-    }
-    return data;
+  fs.readFile(fileName, 'utf8', function (err, data) {
+    if (err) throw err;
+    process.stdout.write(data);
+    process.stdout.write('\nprompt > ');
   });
-  process.stdout.write(fileContents);
 }
