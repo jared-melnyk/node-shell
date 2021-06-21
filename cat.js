@@ -1,9 +1,9 @@
+const { doesNotMatch } = require('assert');
 const fs = require('fs');
 
-module.exports = function (fileName) {
+module.exports = function (fileName, done) {
   fs.readFile(fileName, 'utf8', function (err, data) {
-    if (err) throw err;
-    process.stdout.write(data);
-    process.stdout.write('\nprompt > ');
+    if (err) done('Something went wrong!');
+    done(data);
   });
 }
